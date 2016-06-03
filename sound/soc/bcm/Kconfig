@@ -93,7 +93,14 @@ config SND_AUDIOINJECTOR_PI_SOUNDCARD
 	help
 	  Say Y or M if you want to add support for audioinjector.net Pi Hat
 
-<<<<<<< HEAD
+config SND_DIGIDAC1_SOUNDCARD
+        tristate "Support for Red Rocks Audio DigiDAC1"
+        depends on SND_BCM2708_SOC_I2S || SND_BCM2835_SOC_I2S
+        select SND_SOC_WM8804
+        select SND_SOC_WM8741
+        help
+         Say Y or M if you want to add support for Red Rocks Audio DigiDAC1 board.
+
 config SND_BCM2708_SOC_FE_PI_AUDIO
 	tristate "Support for Fe-Pi-Audio"
 	depends on SND_BCM2708_SOC_I2S || SND_BCM2835_SOC_I2S
@@ -102,12 +109,3 @@ config SND_BCM2708_SOC_FE_PI_AUDIO
 	select REGULATOR_FIXED_VOLTAGE
 	help
 		Say Y or M if you want to add support for Fe-Pi-Audio.
-=======
-config SND_DIGIDAC1_SOUNDCARD
-        tristate "Support for Red Rocks Audio DigiDAC1"
-        depends on SND_BCM2708_SOC_I2S || SND_BCM2835_SOC_I2S
-        select SND_SOC_WM8804
-        select SND_SOC_WM8741
-        help
-         Say Y or M if you want to add support for Red Rocks Audio DigiDAC1 board.
->>>>>>> upstream/rpi-4.4.y

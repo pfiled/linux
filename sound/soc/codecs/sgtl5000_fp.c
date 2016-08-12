@@ -361,6 +361,9 @@ static const DECLARE_TLV_DB_SCALE(mic_20db_boost, 0, 2000, 0);
 /* tlv for hp volume, -51.5db to 12.0db, step .5db */
 static const DECLARE_TLV_DB_SCALE(headphone_volume, -5150, 50, 0);
 
+/* tlv for lineout volume, 31 steps of .5db each */
+static const DECLARE_TLV_DB_SCALE(lineout_volume, -1550, 50, 0);
+
 static const struct snd_kcontrol_new sgtl5000_snd_controls[] = {
 	/* SOC_DOUBLE_S8_TLV with invert */
 	{
@@ -389,6 +392,13 @@ static const struct snd_kcontrol_new sgtl5000_snd_controls[] = {
 
 	SOC_SINGLE_TLV("Mic Boost Switch (+20dB)", SGTL5000_CHIP_MIC_CTRL,
 			0, 1, 0, mic_20db_boost),
+			
+	SOC_DOUBLE_TLV("Lineout Playback Volume",
+			SGTL5000_CHIP_LINE_OUT_VOL,
+			SGTL5000_LINE_OUT_VOL_LEFT_SHIFT,
+			SGTL5000_LINE_OUT_VOL_RIGHT_SHIFT,
+			0x1f, 1,
+			lineout_volume),		
 };
 
 /* mute the codec used by alsa core */
